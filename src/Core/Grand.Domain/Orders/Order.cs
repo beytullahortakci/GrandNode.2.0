@@ -323,7 +323,7 @@ namespace Grand.Domain.Orders
         /// </summary>
         public virtual ICollection<OrderItem> OrderItems {
             get { return _orderItems ??= new List<OrderItem>(); }
-            protected set { _orderItems = value; }
+             set { _orderItems = value; }
         }
 
         /// <summary>

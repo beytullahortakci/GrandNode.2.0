@@ -2,10 +2,12 @@
 using Grand.Api.DTOs.Catalog;
 using Grand.Api.DTOs.Common;
 using Grand.Api.DTOs.Customers;
+using Grand.Api.DTOs.Orders;
 using Grand.Api.DTOs.Shipping;
 using Grand.Api.Infrastructure.DependencyManagement;
 using Grand.Api.Queries.Handlers.Common;
 using Grand.Api.Queries.Models.Common;
+using Grand.Business.Core.Interfaces.Authentication;
 using Grand.Infrastructure;
 using Grand.Infrastructure.Configuration;
 using Grand.Infrastructure.TypeSearchers;
@@ -17,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
+using MongoDB.Driver;
 
 namespace Grand.Api.Infrastructure
 {
@@ -143,6 +146,7 @@ namespace Grand.Api.Infrastructure
 
             services.AddScoped(typeof(IRequestHandler<GetGenericQuery<PictureDto, Domain.Media.Picture>,
                 IQueryable<PictureDto>>), typeof(GetGenericQueryHandler<PictureDto, Domain.Media.Picture>));
+
 
         }
     }

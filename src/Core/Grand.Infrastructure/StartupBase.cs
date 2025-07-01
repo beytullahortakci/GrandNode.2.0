@@ -135,6 +135,7 @@ namespace Grand.Infrastructure
         {
             var assemblies = typeSearcher.GetAssemblies().ToArray();
             services.AddMediatR(assemblies);
+      
         }
 
         /// <summary>

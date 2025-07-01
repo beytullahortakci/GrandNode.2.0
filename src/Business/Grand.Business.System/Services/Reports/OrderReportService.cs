@@ -441,7 +441,7 @@ namespace Grand.Business.System.Services.Reports
                         && (string.IsNullOrEmpty(storeId) || o.StoreId == storeId)
                         && (string.IsNullOrEmpty(salesEmployeeId) || o.SeId == salesEmployeeId)
                         group o by 1 into g
-                        select new ReportPeriodOrder() { Amount = g.Sum(x => x.OrderTotal / x.CurrencyRate), Count = g.Count() };
+                        select new ReportPeriodOrder() { Amount = 0, Count = g.Count() };
             var report = query.ToList()?.FirstOrDefault();
             if (report == null)
                 report = new ReportPeriodOrder();
