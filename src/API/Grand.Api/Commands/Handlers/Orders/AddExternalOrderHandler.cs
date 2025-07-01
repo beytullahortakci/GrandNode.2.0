@@ -130,6 +130,7 @@ namespace Grand.Api.Commands.Handlers.Orders
                             currency = await _currencyService.GetCurrencyByCode(content.CurrencyCode)
                                        ?? await _currencyService.GetPrimaryStoreCurrency();
 
+                            //burada currency bulunmazsa hatada dönülebilir şimdilik default setledim.
 
                             await _userFieldsService.SaveField(customer, SystemCustomerFieldNames.CurrencyId,
                                 currency.Id);
@@ -137,6 +138,7 @@ namespace Grand.Api.Commands.Handlers.Orders
                         else
                         {
                             currency = await _currencyService.GetPrimaryStoreCurrency();
+                            //burada currency bulunmazsa hatada dönülebilir şimdilik default setledim.
                         }
 
                         var billingAddress = await CreateAddressAsync(customer, content.InvoiceAddress, AddressType.Billing);
@@ -259,14 +261,14 @@ namespace Grand.Api.Commands.Handlers.Orders
                 }
                 
                 //await session.CommitTransactionAsync(cancellationToken: cancellationToken);
-                return new CreateOrderResult { IsSuccess = true,OrderId = orderId, Message = "Sipariş başarıyla oluşturuldu" };
+                return new CreateOrderResult { IsSuccess = true,OrderId = orderId, Message = "Order has been created successfully" };
 
 
             }
             catch (Exception ex)
             {
                 //await session.AbortTransactionAsync(cancellationToken: cancellationToken);
-                _logger.Error("Sipariş işleme hatası", ex);
+                _logger.Error("Order processing error", ex);
                 return new CreateOrderResult { IsSuccess = false, Message = ex.Message };
                 throw;
             }
