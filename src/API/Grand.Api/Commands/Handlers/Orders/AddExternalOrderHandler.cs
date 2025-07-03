@@ -171,7 +171,7 @@ namespace Grand.Api.Commands.Handlers.Orders
                                 TaxRate = (item.VatBaseAmount > 0 && item.Price > 0)
                                     ? ((item.VatBaseAmount ?? 0) / item.Price * 100)
                                     : 0,
-                                OriginalProductCost = await _pricingService.GetProductCost(product, null), // custom attributes yoksa ""
+                                OriginalProductCost = await _pricingService.GetProductCost(product, null), 
 
                                 AttributeDescription = item.ProductSize.Trim(),
                                 Quantity = item.Quantity,
